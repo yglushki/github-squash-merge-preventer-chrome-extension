@@ -1,5 +1,5 @@
 function checkBranch() {
-    chrome.storage.sync.get(({ branchesList: [] }), (data) => {  
+    chrome.storage.sync.get(({ branchesList: [] }), (data) => {
         const targetBranch = document.querySelector("span.commit-ref span.css-truncate-target").innerText;
         if (data.branchesList.includes(targetBranch)) {
             const selectItem = document.querySelector("button.js-merge-box-button-squash");
@@ -9,7 +9,15 @@ function checkBranch() {
                 selectItem.disabled = true;
                 mergeButton.disabled = true;
             }
-        }    
+        } else {
+            const selectItem = document.querySelector("button.js-merge-box-button-merge");
+            const mergeButton = document.querySelector("button.btn-group-merge");
+
+            if (selectItem && mergeButton) {
+                selectItem.disabled = true;
+                mergeButton.disabled = true;
+            }
+        }
     });
 }
 
